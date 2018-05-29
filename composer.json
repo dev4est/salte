@@ -1,0 +1,23 @@
+{
+    "name": "user/scms.local",
+    "require": {
+        "smarty/smarty": "^3.1",
+        "phpmailer/phpmailer": "^6.0",
+        "zendframework/zend-crypt": "^3.2",
+        "zendframework/zend-mail": "^2.9",
+        "zendframework/zend-expressive-csrf": "^1.0",
+        "zendframework/zend-http": "^2.8"
+    },
+    "autoload": {
+        "psr-4": {
+            "Communitys\\": "api/Communitys",
+            "Expressive\\": "api/Expressive"
+        }
+    },
+    "authors": [
+        {
+            "name": "Vladimir Onishchenko",
+            "email": "vladimir@webboss.com.ua"
+        }
+    ]
+}
