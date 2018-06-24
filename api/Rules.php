@@ -1,0 +1,1 @@
+<?php/** * Created by PhpStorm. * User: user * Date: 07.06.18 * Time: 11:42 */require_once ('Simpla.php');class Rules extends Simpla{    /**     * @param $rule     * @param $rules     * @return bool     */    public function is_rule($rule, $rules)    {        if(empty($rules[$rule]))            return false;        else            return true;    }}

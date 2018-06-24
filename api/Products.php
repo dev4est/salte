@@ -11,6 +11,9 @@
 
 require_once('Simpla.php');
 
+/**
+ * @property mixed|null db
+ */
 class Products extends Simpla
 {
 	/**

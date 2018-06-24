@@ -20,7 +20,7 @@
         <link rel="canonical" href="{$config->root_url}{$canonical}"/>{/if}
 
     {* Стили *}
-    <link href="design/{$settings->theme|escape}/assets/a8d7da/css/bootstrap.css" rel="stylesheet">
+    <link href="design/{$settings->theme|escape}/assets/css/bootstrap.css" rel="stylesheet">
     <link href="design/{$settings->theme|escape}/assets/css/site.css" rel="stylesheet">
     <link href="design/{$settings->theme|escape}/assets/css/core.css" rel="stylesheet">
     <link href="design/{$settings->theme|escape}/assets/css/icons/icomoon/styles.css" rel="stylesheet">
@@ -28,7 +28,6 @@
     <link href="design/{$settings->theme|escape}/assets/css/colors.css" rel="stylesheet">
     <script src="design/{$settings->theme|escape}/assets/e5eea13b/jquery.js"></script>
     <style></style>
-    <script src="design/{$settings->theme|escape}/assets/67cf9a9b/yii.js"></script>
     <script src="design/{$settings->theme|escape}/assets/js/core/libraries/jquery.min.js"></script>
     <script src="design/{$settings->theme|escape}/assets/js/core/libraries/jquery_ui/widgets.min.js"></script>
     <script src="design/{$settings->theme|escape}/assets/js/core/libraries/bootstrap.min.js"></script>
@@ -144,7 +143,7 @@
                     <li class="dropdown dropdown-user">
                         <a class="dropdown-toggle" data-toggle="dropdown">
                             {if $user->image}
-                                <img src="{$config->profile_users_images_dir}{$user->id}/{$user->image}" class="img-circle img-sm" alt="">
+                                <img src="{$config->profile_users_images_dir}{$user->id}/{$user->image}" class="img-circle img-sm" alt="" style="width: 30px; height: 30px;">
                             {else}
                                 <img src="design/{$settings->theme|escape}/assets/images/placeholder.jpg" class="img-circle img-sm" alt="">
                             {/if}
@@ -168,8 +167,8 @@
                     </li>
 
                 {else}
-                    <li><a class="nav-link" id="register" href="user/register">Регистрация</a></li>
-                    <li><a class="nav-link" id="login" href="user/login">Вход</a></li>
+                    <li><a class="nav-link" id="register" href="/register">Реєстрація</a></li>
+                    <li><a class="nav-link" id="login" href="user/login">Вхід</a></li>
                 {/if}
 
                 <li class="right odd">
@@ -215,29 +214,17 @@
                     <a href="/"><img src="design/{$settings->theme|escape}/images/logo.png"
                                      title="{$settings->site_name|escape}"
                                      alt="{$settings->site_name|escape}" width="150"/></a>
-                </div><!---->
-
-
-                <!--   <div class="caption text-center">
-                                                     <h6 class="text-semibold no-margin">Олег                                    <small class="display-block">Учасник</small></h6>
-                       <ul class="icons-list mt-15">
-                            <li><a href="#" data-popup="tooltip" title="" data-original-title="Google Drive"><i class="icon-google-drive"></i></a></li>
-                            <li><a href="#" data-popup="tooltip" title="" data-original-title="Twitter"><i class="icon-twitter"></i></a></li>
-                            <li><a href="#" data-popup="tooltip" title="" data-original-title="Github"><i class="icon-github"></i></a></li>
-                        </ul>
-                    </div>-->
+                </div>
             </div>
-            {if !$left_bar}
-                {$left_bar='left_bar.tpl'}
+            {if $user->id}
+                {if !$left_bar}
+                    {$left_bar='left_bar.tpl'}
+                {/if}
+                {include file=$left_bar}
             {/if}
-            {include file=$left_bar}
-
-                    <!-- /main navigation -->
+            <!-- /main navigation -->
         </div>
         <!-- /main sidebar -->
-
-
-
                 {$content}
 
 

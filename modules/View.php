@@ -78,7 +78,10 @@ class View extends Simpla
 			$page_url = trim(substr($_SERVER['REQUEST_URI'], strlen($subdir)),"/");
 			if(strpos($page_url, '?') !== false)
 				$page_url = substr($page_url, 0, strpos($page_url, '?'));
-			$this->page = $this->pages->get_page((string)$page_url);
+
+			if(empty($page_url) && !empty($this->user->id))
+                header('Location: '.$this->config->root_url."/profile");
+            $this->page = $this->pages->get_page((string)$page_url);
 			$this->design->assign('page', $this->page);		
 
 			// Передаем в дизайн то, что может понадобиться в нем

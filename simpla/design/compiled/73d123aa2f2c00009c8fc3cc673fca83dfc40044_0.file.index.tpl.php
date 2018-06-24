@@ -1,11 +1,11 @@
 <?php
-/* Smarty version 3.1.32, created on 2018-05-02 15:51:03
+/* Smarty version 3.1.32, created on 2018-06-13 17:30:20
   from '/Users/user/Documents/project/salte/simpla/design/html/index.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.32',
-  'unifunc' => 'content_5ae9b4372267c1_87785959',
+  'unifunc' => 'content_5b212a7ca55384_86603472',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5ae9b4372267c1_87785959 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5b212a7ca55384_86603472 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>

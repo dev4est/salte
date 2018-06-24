@@ -8,7 +8,7 @@
  * @author 		Denis Pikusov
  *
  */
-
+#phpinfo();
 // Засекаем время
 $time_start = microtime(true);
 

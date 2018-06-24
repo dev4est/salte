@@ -50,9 +50,10 @@ class Design extends Simpla
 		$this->smarty->registerPlugin('modifier', 'time',		array($this, 'time_modifier'));		
 		$this->smarty->registerPlugin('function', 'api',		array($this, 'api_plugin'));
         $this->smarty->registerPlugin('function', 'get_logs',		array($this, 'logs_plugin'));
+        $this->smarty->registerPlugin('modifier', 'type_file',		array($this, 'type_file_modifier'));
+        $this->smarty->registerPlugin('modifier', 'rule',		array($this, 'rule_modifier'));
 
-
-		if($this->config->smarty_html_minify)
+        if($this->config->smarty_html_minify)
 			$this->smarty->loadFilter('output', 'trimwhitespace');
 	}
 	
@@ -218,11 +219,52 @@ class Design extends Simpla
 
 		return $this->config->root_url.'/'.$this->config->resized_images_dir.$resized_filename_encoded.'?'.$this->config->token($resized_filename);
 	}
+    public function type_file_modifier($type)
+    {
+        switch ($type){
+            case 'doc':
+                $result = 'icon-file-word';
+                break;
+            case 'docx':
+                $result = 'icon-file-word';
+                break;
+            case 'gif':
+                $result = 'icon-file-picture';
+                break;
+            case 'png':
+                $result = 'icon-file-picture';
+                break;
+            case 'jpg':
+                $result = 'icon-file-picture';
+                break;
+            case 'jpeg':
+                $result = 'icon-file-picture';
+                break;
+            case 'pdf':
+                $result = 'icon-file-pdf';
+                break;
+            case 'xls':
+                $result = 'icon-file-excel';
+                break;
+            case 'xlsx':
+                $result = 'icon-file-excel';
+                break;
+            default:
+                $result = 'icon-file-empty';
+        }
+
+        return $result;
+    }
 
 	public function token_modifier($text)
 	{
 		return $this->config->token($text);
 	}
+
+    public function rule_modifier($rules, $rule)
+    {
+        return !empty($rules[$rule]);
+    }
 
 	public function url_modifier($params)
 	{

@@ -1,11 +1,11 @@
 <?php
-/* Smarty version 3.1.32, created on 2018-05-02 15:51:07
+/* Smarty version 3.1.32, created on 2018-06-13 17:38:56
   from '/Users/user/Documents/project/salte/simpla/design/html/pages.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.32',
-  'unifunc' => 'content_5ae9b43b38bee5_28508111',
+  'unifunc' => 'content_5b212c80194d37_29032032',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5ae9b43b38bee5_28508111 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5b212c80194d37_29032032 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->smarty->ext->_capture->open($_smarty_tpl, 'tabs', null, null);?>
 	<?php if (in_array('pages',$_smarty_tpl->tpl_vars['manager']->value->permissions)) {?>
 	<?php

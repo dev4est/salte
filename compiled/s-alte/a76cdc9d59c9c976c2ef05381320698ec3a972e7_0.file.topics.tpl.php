@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.32, created on 2018-05-25 16:48:11
+/* Smarty version 3.1.32, created on 2018-06-01 09:59:52
   from '/Users/user/Documents/project/salte/design/s-alte/html/community/topics.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.32',
-  'unifunc' => 'content_5b08141bb98878_78888050',
+  'unifunc' => 'content_5b10eee86f2b21_36273102',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'a76cdc9d59c9c976c2ef05381320698ec3a972e7' => 
     array (
       0 => '/Users/user/Documents/project/salte/design/s-alte/html/community/topics.tpl',
-      1 => 1527256089,
+      1 => 1527836359,
       2 => 'file',
     ),
   ),
@@ -20,8 +20,10 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5b08141bb98878_78888050 (Smarty_Internal_Template $_smarty_tpl) {
-?><div class="panel-group panel-group-control panel-group-control-right">
+function content_5b10eee86f2b21_36273102 (Smarty_Internal_Template $_smarty_tpl) {
+?>
+
+<div class="panel-group panel-group-control panel-group-control-right">
 <?php
 $_from = $_smarty_tpl->smarty->ext->_foreach->init($_smarty_tpl, $_smarty_tpl->tpl_vars['topics']->value, 't');
 if ($_from !== null) {

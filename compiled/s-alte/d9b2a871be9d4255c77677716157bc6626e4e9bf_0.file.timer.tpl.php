@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.32, created on 2018-05-25 16:55:51
+/* Smarty version 3.1.32, created on 2018-06-04 09:32:37
   from '/Users/user/Documents/project/salte/design/s-alte/html/topic/timer.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.32',
-  'unifunc' => 'content_5b0815e7dcb248_48251260',
+  'unifunc' => 'content_5b14dd0538b9f5_72725060',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'd9b2a871be9d4255c77677716157bc6626e4e9bf' => 
     array (
       0 => '/Users/user/Documents/project/salte/design/s-alte/html/topic/timer.tpl',
-      1 => 1527256549,
+      1 => 1528093953,
       2 => 'file',
     ),
   ),
@@ -20,8 +20,9 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5b0815e7dcb248_48251260 (Smarty_Internal_Template $_smarty_tpl) {
-?><div class="panel panel-flat">
+function content_5b14dd0538b9f5_72725060 (Smarty_Internal_Template $_smarty_tpl) {
+if ($_smarty_tpl->tpl_vars['topic']->value->timer) {?>
+<div class="panel panel-flat">
     <div class="panel-heading">
         <h6 class="panel-title"><i class="icon-watch position-left"></i> Опитування по темі<a
                     class="heading-elements-toggle"><i class="icon-more"></i></a></h6>
@@ -54,10 +55,13 @@ function content_5b0815e7dcb248_48251260 (Smarty_Internal_Template $_smarty_tpl)
                     class="heading-elements-toggle"><i class="icon-more"></i></a></h6>
     </div>
     <div class="panel-body">
-    <ul class="list-inline list-inline-condensed heading-text">
-        <li><button type="button" class="btn border-success text-success-600 btn-flat btn-icon">За</button></li>
-        <li><button type="button" class="btn border-primary text-primary-600 btn-flat btn-icon">Утриматися</button></li>
-        <li><button type="button" class="btn border-warning text-warning-600 btn-flat btn-icon">Проти</button></li>
+    <ul class="list-inline list-inline-condensed heading-text list-votes">
+        <li><a href="#" class="btn border-success text-success-600 btn-flat btn-icon" data-vote="2" data-topic_id="<?php echo $_smarty_tpl->tpl_vars['topic']->value->id;?>
+">За</a></li>
+        <li><a href="#" class="btn border-primary text-primary-600 btn-flat btn-icon" data-vote="1" data-topic_id="<?php echo $_smarty_tpl->tpl_vars['topic']->value->id;?>
+">Утриматися</a></li>
+        <li><a href="#" class="btn border-warning text-warning-600 btn-flat btn-icon" data-vote="0" data-topic_id="<?php echo $_smarty_tpl->tpl_vars['topic']->value->id;?>
+">Проти</a></li>
     </ul>
     </div>
 </div>
@@ -185,11 +189,36 @@ if ($_smarty_tpl->tpl_vars['topic']->value->end_date) {?>
     }
 
     var deadline="January 01 2018 00:00:00 GMT+0300"; //for Ukraine
+    var today = new Date();
     var deadline = new Date(Date.parse('<?php echo $_smarty_tpl->tpl_vars['topic']->value->end_date;?>
 ')); // for endless timer
+    if(today<deadline)
     initializeClock('clockdiv', deadline);
 <?php echo '</script'; ?>
 >
+    <?php echo '<script'; ?>
+>
+        $(".list-votes a").click(function () {
+            var type = $(this).data('vote');
+            var topic_id = $(this).data('topic_id');
+            console.log(type);
+            $.ajax({
+                url: "/votes/add",
+                data: {topic_id:topic_id, type:type},
+                dataType: 'json',
+                method:'post',
+                success: function(data){
+                    $("#timer_widget").html('');
+                    $("#timer_widget").html(data);
+                }
+            });
+            return false;
+        });
+    <?php echo '</script'; ?>
+>
+
+<?php }
+} else { ?>
 
 <?php }?>
 

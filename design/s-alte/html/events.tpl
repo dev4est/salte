@@ -1,0 +1,1 @@
+<div class="col-lg-8">    <div class="row">        <div class="panel panel-flat">            <div class="panel-heading">                <h2 class="panel-title">Cторінка в розробці</h2>                <a class="heading-elements-toggle"><i class="icon-menu"></i></a></div>            <div class="panel-body">            </div>        </div>    </div></div>

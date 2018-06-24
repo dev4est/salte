@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.32, created on 2018-05-24 21:52:27
+/* Smarty version 3.1.32, created on 2018-06-04 14:29:07
   from '/Users/user/Documents/project/salte/design/s-alte/html/ui/ui_tinyMCE.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.32',
-  'unifunc' => 'content_5b0709ebda37c5_66431565',
+  'unifunc' => 'content_5b152283c31b06_38077051',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '116d65c5e3fdb73dec94ed224d62470812657d19' => 
     array (
       0 => '/Users/user/Documents/project/salte/design/s-alte/html/ui/ui_tinyMCE.tpl',
-      1 => 1527187781,
+      1 => 1528111745,
       2 => 'file',
     ),
   ),
@@ -20,8 +20,10 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5b0709ebda37c5_66431565 (Smarty_Internal_Template $_smarty_tpl) {
-?><textarea placeholder="Текст коментара" id="box-comment"></textarea>
+function content_5b152283c31b06_38077051 (Smarty_Internal_Template $_smarty_tpl) {
+?><textarea placeholder="" id="box-comment" rows="5" cols="5" class="form-control" name="<?php echo $_smarty_tpl->tpl_vars['name']->value;?>
+"><?php echo $_smarty_tpl->tpl_vars['value']->value;?>
+</textarea>
 <?php echo '<script'; ?>
  src="js/tinymce/tinymce.min.js"><?php echo '</script'; ?>
 >

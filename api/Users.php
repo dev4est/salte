@@ -54,14 +54,14 @@ class Users extends Simpla
 				$order = 'u.created DESC';
 				break;
 				case 'name':
-				$order = 'u.name';
+				$order = 'u.username';
 				break;
 			}
 		
 
 		$sql_limit = $this->db->placehold(' LIMIT ?, ? ', ($page-1)*$limit, $limit);
 		// Выбираем пользователей
-		$query = $this->db->placehold("SELECT u.id, u.email, u.password, u.username, u.group_id, u.enabled, u.last_ip, u.created, g.discount, g.name, u.image as group_name FROM __users u
+		$query = $this->db->placehold("SELECT u.id, u.email, u.password_hash as password, u.username as name, u.username, u.group_id, u.enabled, u.last_ip, u.created, g.discount, g.name, u.image as group_name FROM __users u
 		                                LEFT JOIN __groups g ON u.group_id=g.id 
 										WHERE 1 $group_id_filter $keyword_filter ORDER BY $order $sql_limit");
 		$this->db->query($query);
@@ -108,19 +108,22 @@ class Users extends Simpla
 		return $user;
 	}
 	
-	public function add_user($user)
+	public function add_user($param)
 	{
-		$user = (array)$user;
-		if(isset($user['password']))
-			$user['password'] = md5($this->salt.$user['password'].md5($user['password']));
+
+
+        if(isset($param['password']))
+            $param['password_hash'] = $this->create_password($param['password']);
+
+        unset($param['password']);
 			
-		$query = $this->db->placehold("SELECT count(*) as count FROM __users WHERE email=?", $user['email']);
+		$query = $this->db->placehold("SELECT count(*) as count FROM __users WHERE email=?", $param['email']);
 		$this->db->query($query);
 		
 		if($this->db->result('count') > 0)
 			return false;
 		
-		$query = $this->db->placehold("INSERT INTO __users SET ?%", $user);
+		$query = $this->db->placehold("INSERT INTO __users SET ?%", $param);
 		$this->db->query($query);
 		return $this->db->insert_id();
 	}
@@ -304,6 +307,53 @@ class Users extends Simpla
 
         $this->db->query($query);
         return $this->db->results();
+
+    }
+
+    /**
+     * @param string $email
+     * @return bool|string
+     */
+    public function exist_user(string $email='')
+    {
+        $this->db->query('SELECT count(*) as count FROM __users WHERE email=?', $email);
+        $exist = $this->db->result('count');
+        if($exist >0)
+            return true;
+        return false;
+    }
+
+    /**
+     * @param string $password
+     * @return string
+     */
+    public function create_password(string $password)
+    {
+        $bcrypt = new Bcrypt(['cost' => 13]);
+        return $bcrypt->create($password);
+    }
+
+    public function validate_form($param)
+    {
+        $errors = new stdClass();
+        if(empty($param->username))
+            $errors->empty_username  ='empty_username';
+        if(empty($param->surname))
+            $errors->empty_surname  ='empty_surname';
+        if(empty($param->lastname))
+            $errors->empty_lastname  ='empty_lastname';
+        if(empty($param->email))
+            $errors->empty_email ='empty_email';
+        else if($this->exist_user($param->email))
+            $errors->user_exists = 'user_exists';
+
+        if(empty($param->password))
+            $errors->empty_password ='empty_password';
+
+        if(count((array)$errors) > 0)
+            return $errors;
+        else
+            return false;
 
     }
 

@@ -68,7 +68,9 @@ categories_images_dir = files/categories/;
 brands_images_dir = files/brands/;
 
 ;Изображения брендов
+topics_dir = files/topics/;
 
+;Изображения брендов
 profile_users_images_dir = files/profile/users/;
 
 ;Файл изображения с водяным знаком
@@ -78,3 +80,5 @@ watermark_file = simpla/files/watermark/watermark.png;
 
 ;Директория хранения цифровых товаров
 downloads_dir = files/downloads/;
+
+community_dir = files/community/;

@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.32, created on 2018-05-25 15:43:08
+/* Smarty version 3.1.32, created on 2018-06-15 18:56:27
   from '/Users/user/Documents/project/salte/design/s-alte/html/ui/ui_comment.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.32',
-  'unifunc' => 'content_5b0804dc138820_20186110',
+  'unifunc' => 'content_5b23e1abaaab42_19237030',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '8045231670341b577eec3b9ca34af0aee986e70e' => 
     array (
       0 => '/Users/user/Documents/project/salte/design/s-alte/html/ui/ui_comment.tpl',
-      1 => 1527252185,
+      1 => 1529078178,
       2 => 'file',
     ),
   ),
@@ -20,13 +20,13 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5b0804dc138820_20186110 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5b23e1abaaab42_19237030 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->smarty->ext->_tplFunction->registerTplFunctions($_smarty_tpl, array (
   'comments_tree' => 
   array (
     'compiled_filepath' => '/Users/user/Documents/project/salte/compiled/s-alte/8045231670341b577eec3b9ca34af0aee986e70e_0.file.ui_comment.tpl.php',
     'uid' => '8045231670341b577eec3b9ca34af0aee986e70e',
-    'call_name' => 'smarty_template_function_comments_tree_20435055375b0804dbda1f95_33722716',
+    'call_name' => 'smarty_template_function_comments_tree_18288783035b23e1ab633b97_39289781',
   ),
 ));
 ?>
@@ -51,10 +51,10 @@ echo $_smarty_tpl->tpl_vars['user']->value->id;?>
             <input type="hidden" name="parent_id" value="0" id="parent_id">
             <input type="hidden" name="type" value="<?php echo $_smarty_tpl->tpl_vars['topic']->value->id;?>
 ">
+            <input type="hidden" name="action" value="add">
             <textarea class="form-control content-group" placeholder="Ваш коментар" name="text" style="width: 90%;"></textarea>
-            <button type="submit" class="btn bg-success btn-labeled-right"><b><i class="icon-circle-right2"></i></b></button>
-            <button type="button" class="btn bg-success btn-labeled-right"><b><i class="icon-plus22"></i></b></button>
-        </form>
+            <button type="submit" class="btn bg-success btn-labeled-right"><b><i class="icon-pencil3"></i></b></button>
+                    </form>
     </div>
 </div>
 <style>
@@ -78,16 +78,17 @@ echo $_smarty_tpl->tpl_vars['user']->value->id;?>
         overflow-y: scroll;
     }
 </style><?php }
-/* smarty_template_function_comments_tree_20435055375b0804dbda1f95_33722716 */
-if (!function_exists('smarty_template_function_comments_tree_20435055375b0804dbda1f95_33722716')) {
-function smarty_template_function_comments_tree_20435055375b0804dbda1f95_33722716(Smarty_Internal_Template $_smarty_tpl,$params) {
+/* smarty_template_function_comments_tree_18288783035b23e1ab633b97_39289781 */
+if (!function_exists('smarty_template_function_comments_tree_18288783035b23e1ab633b97_39289781')) {
+function smarty_template_function_comments_tree_18288783035b23e1ab633b97_39289781(Smarty_Internal_Template $_smarty_tpl,$params) {
 foreach ($params as $key => $value) {
 $_smarty_tpl->tpl_vars[$key] = new Smarty_Variable($value, $_smarty_tpl->isRenderingCache);
 }
 ?>
 
 <div class="list-comments row-<?php echo $_smarty_tpl->tpl_vars['row']->value;?>
-">
+ <?php if ($_smarty_tpl->tpl_vars['level']->value < 2) {?>media-<?php echo $_smarty_tpl->tpl_vars['row']->value;
+}?>">
     <?php if ($_smarty_tpl->tpl_vars['comments']->value) {?>
         <?php
 $_from = $_smarty_tpl->smarty->ext->_foreach->init($_smarty_tpl, $_smarty_tpl->tpl_vars['comments']->value, 'c', false, 'key');
@@ -114,9 +115,27 @@ echo $_smarty_tpl->tpl_vars['c']->value->user_id;?>
 </a>
                             <span class="media-annotation dotted"><?php echo $_smarty_tpl->tpl_vars['c']->value->date;?>
 </span>
+                            <ul class="list-inline list-inline-condensed heading-text pull-right">
+                                <?php if (call_user_func_array($_smarty_tpl->registered_plugins[ 'modifier' ][ 'rule' ][ 0 ], array( $_smarty_tpl->tpl_vars['topic']->value->rules,'comment_delete' ))) {?>
+                                    <li><a href="#" class="text-default delcomment" data-session="<?php echo $_SESSION['id'];?>
+" data-id="<?php echo $_smarty_tpl->tpl_vars['c']->value->id;?>
+" data-parent_id="<?php echo $_smarty_tpl->tpl_vars['c']->value->parent_id;?>
+"><i class="icon-trash"></i></a></li>
+                                <?php }?>
+                                <?php if (call_user_func_array($_smarty_tpl->registered_plugins[ 'modifier' ][ 'rule' ][ 0 ], array( $_smarty_tpl->tpl_vars['topic']->value->rules,'comment_edit' ))) {?>
+                                    <li><a class="editcomment text-default" href="#" data-type="2" data-id="<?php echo $_smarty_tpl->tpl_vars['c']->value->id;?>
+" data-parent_id="<?php if ($_smarty_tpl->tpl_vars['c']->value->parent_id) {
+echo $_smarty_tpl->tpl_vars['c']->value->parent_id;
+} else {
+echo $_smarty_tpl->tpl_vars['c']->value->id;
+}?>" ><i class="icon-pencil7"></i></a></li>
+                                <?php }?>
+
+                            </ul>
                         </div>
 
-                        <p><?php echo $_smarty_tpl->tpl_vars['c']->value->text;?>
+                        <p id="text-<?php echo $_smarty_tpl->tpl_vars['c']->value->id;?>
+"><?php echo $_smarty_tpl->tpl_vars['c']->value->text;?>
 </p>
                         <?php if ($_smarty_tpl->tpl_vars['level']->value < 2) {?>
                         <ul class="list-inline list-inline-separate text-size-small">
@@ -126,8 +145,11 @@ echo $_smarty_tpl->tpl_vars['c']->value->user_id;?>
 " data-author="<?php echo $_smarty_tpl->tpl_vars['c']->value->username;?>
  <?php echo $_smarty_tpl->tpl_vars['c']->value->surname;?>
 ">Коментувати</a></li>
-                              <li><a href="#" data-type="2" data-id="<?php echo $_smarty_tpl->tpl_vars['c']->value->id;?>
+                            <?php if (call_user_func_array($_smarty_tpl->registered_plugins[ 'modifier' ][ 'rule' ][ 0 ], array( $_smarty_tpl->tpl_vars['topic']->value->rules,'comment_edit' )) || $_smarty_tpl->tpl_vars['user']->value->id == $_smarty_tpl->tpl_vars['c']->value->user_id) {?>
+                                <li><a class="editcomment" href="#" data-type="2" data-id="<?php echo $_smarty_tpl->tpl_vars['c']->value->id;?>
+" data-parent_id="<?php echo $_smarty_tpl->tpl_vars['c']->value->id;?>
 ">Редагувати</a></li>
+                            <?php }?>
                           </ul>
                         <?php } else { ?>
                             <ul class="list-inline list-inline-separate text-size-small">
@@ -137,8 +159,11 @@ echo $_smarty_tpl->tpl_vars['c']->value->user_id;?>
 " data-author="<?php echo $_smarty_tpl->tpl_vars['c']->value->username;?>
  <?php echo $_smarty_tpl->tpl_vars['c']->value->surname;?>
 ">Коментувати</a></li>
-                                <li><a href="#" data-type="2" data-id="<?php echo $_smarty_tpl->tpl_vars['c']->value->id;?>
+                            <?php if (call_user_func_array($_smarty_tpl->registered_plugins[ 'modifier' ][ 'rule' ][ 0 ], array( $_smarty_tpl->tpl_vars['topic']->value->rules,'comment_edit' )) || $_smarty_tpl->tpl_vars['user']->value->id == $_smarty_tpl->tpl_vars['c']->value->user_id) {?>
+                                <li><a class="editcomment" href="#" data-type="2" data-id="<?php echo $_smarty_tpl->tpl_vars['c']->value->id;?>
+" data-parent_id="<?php echo $_smarty_tpl->tpl_vars['c']->value->parent_id;?>
 ">Редагувати</a></li>
+                            <?php }?>
                             </ul>
                         <?php }?>
 
@@ -146,7 +171,8 @@ echo $_smarty_tpl->tpl_vars['c']->value->user_id;?>
                             <?php $_smarty_tpl->smarty->ext->_tplFunction->callTemplateFunction($_smarty_tpl, 'comments_tree', array('comments'=>$_smarty_tpl->tpl_vars['c']->value->sub_coments,'count'=>(count($_smarty_tpl->tpl_vars['c']->value->sub_coments))-1,'level'=>2,'row'=>$_smarty_tpl->tpl_vars['c']->value->id), true);?>
 
                         <?php if ($_smarty_tpl->tpl_vars['level']->value < 2) {?>
-                            <div class="media media-hiden form-new-comment">
+                            <div class="media media-hiden form-new-comment" id="comment-<?php echo $_smarty_tpl->tpl_vars['c']->value->id;?>
+">
                                 <div class="media-left">
                                     <a href="/profile/<?php echo $_smarty_tpl->tpl_vars['c']->value->user_id;?>
 ">
@@ -164,12 +190,12 @@ echo $_smarty_tpl->tpl_vars['c']->value->user_id;?>
 " id="parent_id">
                                         <input type="hidden" name="type" value="<?php echo $_smarty_tpl->tpl_vars['topic']->value->id;?>
 ">
+                                        <input type="hidden" name="action" value="add">
                                         <a name="comment-<?php echo $_smarty_tpl->tpl_vars['c']->value->id;?>
 "></a>
-                                        <textarea class="form-control content-group send-text" name="text" placeholder="Залишити коментар"></textarea>
-                                        <button type="submit" class="btn bg-success btn-labeled-right"><b><i class="icon-circle-right2"></i></b></button>
-                                        <button type="button" class="btn bg-success btn-labeled-right"><b><i class="icon-plus22"></i></b></button>
-                                    </form>
+                                        <textarea class="form-control content-group send-text" name="text" placeholder="Залишити коментар" ></textarea>
+                                        <button type="submit" class="btn bg-success btn-labeled-right"><b><i class="icon-pencil3"></i></b></button>
+                                                                            </form>
                                 </div>
                             </div>
                         <?php }?>
@@ -184,5 +210,5 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
 </div>
 <?php
 }}
-/*/ smarty_template_function_comments_tree_20435055375b0804dbda1f95_33722716 */
+/*/ smarty_template_function_comments_tree_18288783035b23e1ab633b97_39289781 */
 }

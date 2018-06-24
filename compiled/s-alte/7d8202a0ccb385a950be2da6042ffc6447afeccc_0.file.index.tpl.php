@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.32, created on 2018-05-25 16:44:58
+/* Smarty version 3.1.32, created on 2018-06-24 18:41:03
   from '/Users/user/Documents/project/salte/design/s-alte/html/index.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.32',
-  'unifunc' => 'content_5b08135a63d596_31785969',
+  'unifunc' => 'content_5b2fbb8f5c2d15_14581244',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '7d8202a0ccb385a950be2da6042ffc6447afeccc' => 
     array (
       0 => '/Users/user/Documents/project/salte/design/s-alte/html/index.tpl',
-      1 => 1527255897,
+      1 => 1529854695,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5b08135a63d596_31785969 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5b2fbb8f5c2d15_14581244 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <html>
 <head>
@@ -43,7 +43,7 @@ echo $_smarty_tpl->tpl_vars['canonical']->value;?>
 "/><?php }?>
 
         <link href="design/<?php echo htmlspecialchars($_smarty_tpl->tpl_vars['settings']->value->theme, ENT_QUOTES, 'UTF-8', true);?>
-/assets/a8d7da/css/bootstrap.css" rel="stylesheet">
+/assets/css/bootstrap.css" rel="stylesheet">
     <link href="design/<?php echo htmlspecialchars($_smarty_tpl->tpl_vars['settings']->value->theme, ENT_QUOTES, 'UTF-8', true);?>
 /assets/css/site.css" rel="stylesheet">
     <link href="design/<?php echo htmlspecialchars($_smarty_tpl->tpl_vars['settings']->value->theme, ENT_QUOTES, 'UTF-8', true);?>
@@ -59,10 +59,6 @@ echo $_smarty_tpl->tpl_vars['canonical']->value;?>
 /assets/e5eea13b/jquery.js"><?php echo '</script'; ?>
 >
     <style></style>
-    <?php echo '<script'; ?>
- src="design/<?php echo htmlspecialchars($_smarty_tpl->tpl_vars['settings']->value->theme, ENT_QUOTES, 'UTF-8', true);?>
-/assets/67cf9a9b/yii.js"><?php echo '</script'; ?>
->
     <?php echo '<script'; ?>
  src="design/<?php echo htmlspecialchars($_smarty_tpl->tpl_vars['settings']->value->theme, ENT_QUOTES, 'UTF-8', true);?>
 /assets/js/core/libraries/jquery.min.js"><?php echo '</script'; ?>
@@ -233,7 +229,7 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
                                 <img src="<?php echo $_smarty_tpl->tpl_vars['config']->value->profile_users_images_dir;
 echo $_smarty_tpl->tpl_vars['user']->value->id;?>
 /<?php echo $_smarty_tpl->tpl_vars['user']->value->image;?>
-" class="img-circle img-sm" alt="">
+" class="img-circle img-sm" alt="" style="width: 30px; height: 30px;">
                             <?php } else { ?>
                                 <img src="design/<?php echo htmlspecialchars($_smarty_tpl->tpl_vars['settings']->value->theme, ENT_QUOTES, 'UTF-8', true);?>
 /assets/images/placeholder.jpg" class="img-circle img-sm" alt="">
@@ -259,8 +255,8 @@ echo $_smarty_tpl->tpl_vars['user']->value->id;?>
                     </li>
 
                 <?php } else { ?>
-                    <li><a class="nav-link" id="register" href="user/register">Регистрация</a></li>
-                    <li><a class="nav-link" id="login" href="user/login">Вход</a></li>
+                    <li><a class="nav-link" id="register" href="/register">Реєстрація</a></li>
+                    <li><a class="nav-link" id="login" href="user/login">Вхід</a></li>
                 <?php }?>
 
                 <li class="right odd">
@@ -311,30 +307,18 @@ echo $_smarty_tpl->tpl_vars['user']->value->id;?>
 "
                                      alt="<?php echo htmlspecialchars($_smarty_tpl->tpl_vars['settings']->value->site_name, ENT_QUOTES, 'UTF-8', true);?>
 " width="150"/></a>
-                </div><!---->
-
-
-                <!--   <div class="caption text-center">
-                                                     <h6 class="text-semibold no-margin">Олег                                    <small class="display-block">Учасник</small></h6>
-                       <ul class="icons-list mt-15">
-                            <li><a href="#" data-popup="tooltip" title="" data-original-title="Google Drive"><i class="icon-google-drive"></i></a></li>
-                            <li><a href="#" data-popup="tooltip" title="" data-original-title="Twitter"><i class="icon-twitter"></i></a></li>
-                            <li><a href="#" data-popup="tooltip" title="" data-original-title="Github"><i class="icon-github"></i></a></li>
-                        </ul>
-                    </div>-->
+                </div>
             </div>
-            <?php if (!$_smarty_tpl->tpl_vars['left_bar']->value) {?>
-                <?php $_smarty_tpl->_assignInScope('left_bar', 'left_bar.tpl');?>
-            <?php }?>
-            <?php $_smarty_tpl->_subTemplateRender($_smarty_tpl->tpl_vars['left_bar']->value, $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, true);
+            <?php if ($_smarty_tpl->tpl_vars['user']->value->id) {?>
+                <?php if (!$_smarty_tpl->tpl_vars['left_bar']->value) {?>
+                    <?php $_smarty_tpl->_assignInScope('left_bar', 'left_bar.tpl');?>
+                <?php }?>
+                <?php $_smarty_tpl->_subTemplateRender($_smarty_tpl->tpl_vars['left_bar']->value, $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, true);
 ?>
-
-                    <!-- /main navigation -->
+            <?php }?>
+            <!-- /main navigation -->
         </div>
         <!-- /main sidebar -->
-
-
-
                 <?php echo $_smarty_tpl->tpl_vars['content']->value;?>
 
 

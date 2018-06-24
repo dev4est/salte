@@ -49,6 +49,7 @@ class IndexView extends View
 
 		// Tекущий action
         $action = $this->request->get('action', 'string');
+        $action .= "Action";
 
 		$module = preg_replace("/[^A-Za-z0-9]+/", "", $module);
 
@@ -64,18 +65,24 @@ class IndexView extends View
 				if (class_exists($module))
 				{
 					$this->main = new $module($this);
+
 				} else return false;
 		} else return false;
 
         // Создаем основной блок страницы
-		if(!empty($action)){
-		    $action .= "Action";
+		if(!empty($action) && method_exists($this->main, $action)){
             $content = $this->main->$action();
         }
 		elseif (!$content = $this->main->fetch())
 		{
 			return false;
 		}		
+
+		if(empty($content))
+        {
+            $this->main = null;
+            return false;
+        }
 
 		// Передаем основной блок в шаблон
 		$this->design->assign('content', $content);		

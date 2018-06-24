@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.32, created on 2018-05-25 16:25:55
+/* Smarty version 3.1.32, created on 2018-06-04 14:26:08
   from '/Users/user/Documents/project/salte/design/s-alte/html/topic.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.32',
-  'unifunc' => 'content_5b080ee3d1cf08_73037790',
+  'unifunc' => 'content_5b1521d0130275_92809229',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'fd669df42237a7a50191c5f05b834165651ab545' => 
     array (
       0 => '/Users/user/Documents/project/salte/design/s-alte/html/topic.tpl',
-      1 => 1527254743,
+      1 => 1528111312,
       2 => 'file',
     ),
   ),
@@ -20,10 +20,12 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
     'file:ui/ui_comment.tpl' => 1,
     'file:topic/timer.tpl' => 1,
+    'file:topic/add_timer.tpl' => 1,
+    'file:topic/files.tpl' => 1,
     'file:topic/users_list.tpl' => 1,
   ),
 ),false)) {
-function content_5b080ee3d1cf08_73037790 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5b1521d0130275_92809229 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!-- Detailed task -->
 <div class="row">
     <div class="col-lg-8">
@@ -39,6 +41,48 @@ function content_5b080ee3d1cf08_73037790 (Smarty_Internal_Template $_smarty_tpl)
             <div class="panel-body">
                <?php echo $_smarty_tpl->tpl_vars['topic']->value->text;?>
 
+                <?php if ($_smarty_tpl->tpl_vars['topic']->value->files) {?>
+                <div class="row">
+                    <?php
+$_from = $_smarty_tpl->smarty->ext->_foreach->init($_smarty_tpl, $_smarty_tpl->tpl_vars['topic']->value->files, 'i');
+if ($_from !== null) {
+foreach ($_from as $_smarty_tpl->tpl_vars['i']->value) {
+?>
+                        <?php if ($_smarty_tpl->tpl_vars['i']->value->type == 'jpg' || $_smarty_tpl->tpl_vars['i']->value->type == 'png' || $_smarty_tpl->tpl_vars['i']->value->type == 'gif') {?>
+                    <div class="col-md-3 col-sm-6">
+                        <div class="thumbnail">
+                            <div class="thumb">
+                                <img src="<?php echo $_smarty_tpl->tpl_vars['config']->value->topics_dir;
+echo $_smarty_tpl->tpl_vars['topic']->value->id;?>
+/<?php echo $_smarty_tpl->tpl_vars['i']->value->name;?>
+" alt="">
+                                <div class="caption-overflow">
+														<span>
+															<a href="<?php echo $_smarty_tpl->tpl_vars['config']->value->topics_dir;
+echo $_smarty_tpl->tpl_vars['topic']->value->id;?>
+/<?php echo $_smarty_tpl->tpl_vars['i']->value->name;?>
+" class="btn bg-success-300 btn-xs btn-icon"><i class="icon-zoomin3"></i></a>
+															<a href="<?php echo $_smarty_tpl->tpl_vars['config']->value->topics_dir;
+echo $_smarty_tpl->tpl_vars['topic']->value->id;?>
+/<?php echo $_smarty_tpl->tpl_vars['i']->value->name;?>
+" class="btn bg-success-300 btn-xs btn-icon"><i class="icon-download"></i></a>
+														</span>
+                                </div>
+                            </div>
+
+                            <div class="caption text-center">
+                                <?php echo $_smarty_tpl->tpl_vars['i']->value->name;?>
+
+                            </div>
+                        </div>
+                    </div>
+                        <?php }?>
+                    <?php
+}
+}
+$_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
+                </div>
+                <?php }?>
             </div>
 
             <div class="panel-footer"><a class="heading-elements-toggle"><i class="icon-more"></i></a>
@@ -50,8 +94,17 @@ function content_5b080ee3d1cf08_73037790 (Smarty_Internal_Template $_smarty_tpl)
                                 <span class="caret"></span></a>
                                                    </li>
                     </ul>
+                    <ul class="list-inline list-inline-condensed heading-text pull-right">
+                        <?php if (call_user_func_array($_smarty_tpl->registered_plugins[ 'modifier' ][ 'rule' ][ 0 ], array( $_smarty_tpl->tpl_vars['topic']->value->rules,'topic_delete' ))) {?>
+                        <li><a href="#" class="text-default"><i class="icon-trash"></i></a></li>
+                        <?php }?>
+                        <?php if (call_user_func_array($_smarty_tpl->registered_plugins[ 'modifier' ][ 'rule' ][ 0 ], array( $_smarty_tpl->tpl_vars['topic']->value->rules,'topic_edit' ))) {?>
+                            <li><a href="/topic/edit/<?php echo $_smarty_tpl->tpl_vars['topic']->value->id;?>
+" class="text-default"><i class="icon-pencil7"></i></a></li>
+                        <?php }?>
 
-                                  </div>
+                    </ul>
+                </div>
             </div>
         </div>
         <!-- /task overview -->
@@ -81,58 +134,30 @@ function content_5b080ee3d1cf08_73037790 (Smarty_Internal_Template $_smarty_tpl)
     </div>
 
     <div class="col-lg-4">
-        <div class="row">
-            <?php if ($_smarty_tpl->tpl_vars['topic']->value->end_date) {?>
+        <div class="row" id="timer_widget">
+            <?php if ($_smarty_tpl->tpl_vars['topic']->value->timer) {?>
                 <!-- Timer -->
                 <?php $_smarty_tpl->_subTemplateRender("file:topic/timer.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
+?>
+            <?php } elseif (call_user_func_array($_smarty_tpl->registered_plugins[ 'modifier' ][ 'rule' ][ 0 ], array( $_smarty_tpl->tpl_vars['topic']->value->rules,'votes' ))) {?>
+                <?php $_smarty_tpl->_subTemplateRender("file:topic/add_timer.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
 ?>
                 <!-- /timer -->
             <?php }?>
 
+            <?php if ($_smarty_tpl->tpl_vars['topic']->value->files) {?>
              <!-- Attached files -->
-            <div class="panel panel-flat">
-                 <div class="panel-heading">
-                     <h6 class="panel-title"><i class="icon-link position-left"></i> Долучені файли<a
-                                 class="heading-elements-toggle"><i class="icon-more"></i></a></h6>
-                 </div>
-
-                 <div class="panel-body">
-                     <ul class="media-list">
-                         <li class="media">
-                             <div class="media-left media-middle">
-                                 <i class="icon-file-word icon-2x text-muted"></i>
-                             </div>
-
-                             <div class="media-body">
-                                 <a href="#" class="media-heading text-semibold">Overdrew_scowled.doc</a>
-                                 <ul class="list-inline list-inline-separate list-inline-condensed text-size-mini text-muted">
-                                     <li>Size: 1.2Mb</li>
-                                     <li><a href="#"><i class="icon-download"></i></a></li>
-                                 </ul>
-                             </div>
-                         </li>
-
-                         <li class="media">
-                             <div class="media-left media-middle">
-                                 <i class="icon-file-pdf icon-2x text-muted"></i>
-                             </div>
-
-                             <div class="media-body">
-                                 <a href="#" class="media-heading text-semibold">The_less_overslept.pdf</a>
-                                 <ul class="list-inline list-inline-separate list-inline-condensed text-size-mini text-muted">
-                                     <li>Size: 4.3Mb</li>
-                                     <li><a href="#"><i class="icon-download"></i></a></li>
-                                 </ul>
-                             </div>
-                         </li>
-                     </ul>
-                 </div>
-             </div>            <!-- /attached files -->
+                <?php $_smarty_tpl->_subTemplateRender('file:topic/files.tpl', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
+?>
+            <?php }?>
+            <!-- /attached files -->
 
 
             <!-- Assigned users -->
-           <?php $_smarty_tpl->_subTemplateRender("file:topic/users_list.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
+            <?php if ($_smarty_tpl->tpl_vars['users_topic']->value) {?>
+                <?php $_smarty_tpl->_subTemplateRender("file:topic/users_list.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
 ?>
+            <?php }?>
             <!-- /assigned users -->
 
         </div>
@@ -142,5 +167,9 @@ function content_5b080ee3d1cf08_73037790 (Smarty_Internal_Template $_smarty_tpl)
 <?php echo '<script'; ?>
  src="design/<?php echo htmlspecialchars($_smarty_tpl->tpl_vars['settings']->value->theme, ENT_QUOTES, 'UTF-8', true);?>
 /js/topic/comment.js"><?php echo '</script'; ?>
+>
+<?php echo '<script'; ?>
+ src="design/<?php echo htmlspecialchars($_smarty_tpl->tpl_vars['settings']->value->theme, ENT_QUOTES, 'UTF-8', true);?>
+/js/topic/calendar.js"><?php echo '</script'; ?>
 ><?php }
 }

@@ -1,12 +1,11 @@
 {
-    "name": "user/scms.local",
+    "name": "user/salte.local",
     "require": {
         "smarty/smarty": "^3.1",
         "phpmailer/phpmailer": "^6.0",
         "zendframework/zend-crypt": "^3.2",
-        "zendframework/zend-mail": "^2.9",
-        "zendframework/zend-expressive-csrf": "^1.0",
-        "zendframework/zend-http": "^2.8"
+        "cboden/ratchet": "^0.4.1",
+        "react/zmq": "0.2.*|0.3.*"
     },
     "autoload": {
         "psr-4": {
@@ -19,5 +18,7 @@
             "name": "Vladimir Onishchenko",
             "email": "vladimir@webboss.com.ua"
         }
-    ]
+    ],
+    "require-dev": {
+    }
 }

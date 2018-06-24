@@ -9,6 +9,23 @@
  *
  */
 
+/**
+ * Class Simpla
+ *
+ * @property mixed|null communitys
+ * @property mixed|null request
+ * @property mixed|null design
+ * @property mixed|null config
+ * @property mixed|null db
+ * @property mixed|null settings
+ * @property mixed|null products
+ * @property mixed|null variants
+ * @property mixed|null categories
+ * @property mixed|null brands
+ * @property mixed|null messages
+ * @property mixed|null debug
+ * @property mixed|null organization
+ */
 class Simpla
 {
 	// Свойства - Классы API
@@ -40,7 +57,11 @@ class Simpla
         'communitys' => 'Communitys',
         'messages'   => 'Messages',
         'ajax'       => 'Ajax',
-        'debug'      => 'Debug'
+        'debug'      => 'Debug',
+        'files'      => 'Files',
+        'wall'       => 'Wall',
+        'rules'      => 'Rules',
+        'organization' => 'Organization'
 	);
 	
 	// Созданные объекты

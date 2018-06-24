@@ -6,11 +6,17 @@ class LoginView extends View
 {
 	function fetch()
 	{
-
-
+        // Отображать скрытые страницы только админу
+        if(!empty($this->user))
+        {
+            header('Location: '.$this->config->root_url.'/');
+            exit();
+        }
+        $this->design->assign('wrapper', 'home_login.tpl');
 		// Выход
 		if($this->request->get('action') == 'logout')
 		{
+
 			unset($_SESSION['user_id']);
 			header('Location: '.$this->config->root_url);
 			exit();
@@ -71,9 +77,10 @@ class LoginView extends View
 			$password		= $this->request->post('password');
 			
 			$this->design->assign('email', $email);
-		
+
 			if($user_id = $this->users->check_password($email, $password))
 			{
+
 				$user = $this->users->get_user($email);
 
 				if($user->enabled)
@@ -98,5 +105,12 @@ class LoginView extends View
 			}				
 		}	
 		return $this->design->fetch('login.tpl');
-	}	
+	}
+
+	public function logoutAction()
+    {
+        unset($_SESSION['user_id']);
+        header('Location: '.$this->config->root_url);
+        exit();
+    }
 }

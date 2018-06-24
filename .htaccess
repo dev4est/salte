@@ -6,26 +6,46 @@ RewriteEngine on
 # Админка теперь по адресу /simpla
 RewriteRule	^admin/?$  simpla [L]
 
+#anceta
+RewriteRule ^fgsa?$	    index.php?module=InventoryView&page_url=fgsa [L,QSA]
+
+#wall
+RewriteRule ^profile/news?$	    index.php?module=WallView [L,QSA]
+#votes
+RewriteRule ^votes/new/?$	    index.php?module=VotesView&action=new [L,QSA]
+RewriteRule ^votes/add/?$	    index.php?module=VotesView&action=add [L,QSA]
 #topic
+RewriteRule ^topic/add/([^/]+)?$	    index.php?module=TopicView&action=add&id=$1 [L,QSA]
+RewriteRule ^topic/edit/([^/]+)?$	    index.php?module=TopicView&action=edit&id=$1 [L,QSA]
 RewriteRule ^topic/([^/]+)?$	    index.php?module=TopicView&id=$1 [L,QSA]
 
 #comment
 RewriteRule ^comment/add?$	    index.php?module=CommentView&action=add [L,QSA]
+RewriteRule ^comment/update?$	    index.php?module=CommentView&action=update [L,QSA]
+RewriteRule ^comment/delete?$	    index.php?module=CommentView&action=delete [L,QSA]
 #profile
+
 RewriteRule ^profile/security/?$	index.php?module=SecurityView [L,QSA]
 RewriteRule ^profile/community?$	index.php?module=SecurityView&action=communitys [L,QSA]
 RewriteRule ^profile/messages?$	    index.php?module=SecurityView&action=messages [L,QSA]
 RewriteRule ^profile/news?$	    index.php?module=SecurityView&action=news [L,QSA]
+RewriteRule ^profile/?$	index.php?module=ProfileView [L,QSA]
 
 #messages
 RewriteRule ^profile/messages/([^/]+)?$	    index.php?module=MessagesView&id=$1 [L,QSA]
 RewriteRule ^messages/create?$	    index.php?module=MessagesView&action=create [L,QSA]
 RewriteRule ^messages/add?$	    index.php?module=MessagesView&action=add [L,QSA]
 RewriteRule ^messages/load?$	    index.php?module=MessagesView&action=load [L,QSA]
+RewriteRule ^messages/send?$	    index.php?module=MessagesView&action=send [L,QSA]
 #community
 RewriteRule ^community/?$	index.php?module=CommunitysView [L,QSA]
 RewriteRule ^community/([^/]+)/messages?$	index.php?module=CommunityView&id=$1&action=messages [L,QSA]
-RewriteRule ^community/([^/]+)/users?$	index.php?module=CommunityView&id=$1&action=users [L,QSA]
+RewriteRule ^community/([^/]+)/users?$	index.php?module=CommunityView&id=$1&action=users&visible=1 [L,QSA]
+RewriteRule ^community/([^/]+)/events?$	index.php?module=CommunityView&action=events [L,QSA]
+RewriteRule ^community/newuser?$	index.php?module=CommunityView&id=$1&action=addUser [L,QSA]
+RewriteRule ^community/updateuser?$	index.php?module=CommunityView&action=updateUser [L,QSA]
+RewriteRule ^community/([^/]+)/users/new?$	index.php?module=CommunityView&id=$1&action=users&visible=0 [L,QSA]
+RewriteRule ^community/([^/]+)/users/delete?$	index.php?module=CommunityView&id=$1&action=users&visible=2 [L,QSA]
 RewriteRule ^community/([^/]+)/?$	index.php?module=CommunityView&id=$1 [L,QSA]
 # Каталог товаров
 RewriteRule ^catalog/([^/]+)/?$	index.php?module=ProductsView&category=$1 [L,QSA]
@@ -52,9 +72,13 @@ RewriteRule ^cart/remove/([^/]+)/?$	index.php?module=CartView&delete_variant=$1 
 RewriteRule ^order/([^/]+)/?$	index.php?module=OrderView&url=$1  [L,QSA]
 RewriteRule ^order/?$	index.php?module=OrderView  [L,QSA]
 
+#register
+RewriteRule ^register/?$	index.php?module=RegisterView  [L,QSA]
+RewriteRule ^register/user/?$	index.php?module=RegisterView&action=user  [L,QSA]
+RewriteRule ^register/organization/?$	index.php?module=RegisterView&action=organization  [L,QSA]
+
 # Для пользователей
 RewriteRule ^user/login/?$	index.php?module=LoginView  [L,QSA]
-RewriteRule ^user/register/?$	index.php?module=RegisterView  [L,QSA]
 RewriteRule ^user/logout/?$	index.php?module=LoginView&action=logout  [L,QSA]
 RewriteRule ^user/password_remind/?$	index.php?module=LoginView&action=password_remind  [L,QSA]
 RewriteRule ^user/password_remind/([0-9a-z]+)/?$	index.php?module=LoginView&action=password_remind&code=$1  [L,QSA]
